@@ -1,0 +1,170 @@
+<body><!DOCTYPE html>
+<html>
+<style>
+#container {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  background: brown;
+}
+#mayank {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: red;
+}
+
+#editor { 
+	width:500px;
+	margin-left : 800px;
+	margin-top : 100px;
+	height:500px;
+	position: absolute;
+	float : right;
+	top:0;
+}
+</style>
+
+<body>
+<p>
+<button onclick="champ.movedown()">Move Down</button>
+</p>
+<p>
+<button onclick="movedownfor()">Move Down For</button>
+</p>
+<p>
+<button onclick="champ.moveup()">Move Up</button>
+</p>
+<p>
+<button onclick="champ.moveright()">Move Right</button>
+</p>
+<p>
+<button onclick="champ.moveleft()">Move Left</button>
+</p>
+
+<div id ="container">
+<div id ="mayank" style="top:0;left:0"></div>
+</div>
+
+<div id = "material"> 
+</div>
+<p>
+<button onclick="Getvalue()">Text Value</button>
+</p>
+
+<div id="editor">// Type your code here
+</div>
+
+
+<script src="ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/javascript");
+	
+	function Getvalue()
+	{
+		var text = editor.getValue();
+	//	alert(text);
+		eval(text);
+	}
+	
+	function movedownfor()
+	{
+		for(var i=0;i<4;i++)
+		{
+			//alert("mayank");
+			champ.movedown();
+	//		alert("neha");
+		}
+	}
+
+</script>
+
+
+<script>
+var champ = {
+    firstName: "Character",
+    pos_x      : 0,
+	pos_y      : 0,
+	moveby 	   : 50,
+	
+	name : function() {
+		return firstName;
+	},
+	
+    movedown : function() {
+	//alert("runnable");
+		var elem = document.getElementById("mayank");
+		var pos = parseInt(elem.style.top);
+		//alert(pos);
+		var fix = parseInt(elem.style.top) + this.moveby;
+		var id = setInterval(frame, 1);
+		function frame() {
+			if (pos == fix) {
+			  clearInterval(id);
+			} else {
+			  pos++;
+			  elem.style.top = (pos) + 'px';
+			}
+		}
+	//	alert("stoopppa");
+		//alert(parseInt(elem.style.top));
+	},
+	
+	moveup : function() {
+		var elem = document.getElementById("mayank");
+		var pos = parseInt(elem.style.top);
+		//alert(pos);
+		var fix = parseInt(elem.style.top) - this.moveby;
+		var id = setInterval(frame, 5);
+
+		function frame() {
+			if(pos == fix ){
+				clearInterval(id);
+			//	alert(pos);
+			}
+			else{
+				pos--;
+				elem.style.top = (pos - 1) + 'px';
+			}
+		}
+	},
+	
+	moveright : function() {
+		var elem = document.getElementById("mayank");
+		var pos = parseInt(elem.style.left);
+		var fix = parseInt(elem.style.left) + this.moveby;
+		var id = setInterval(frame, 5);
+		function frame() {
+			if(pos == fix){
+				clearInterval(id);
+			}
+			else{
+				pos++;
+				elem.style.left = pos + 'px';
+			}
+		}
+	},
+	
+	moveleft : function() {
+		var elem = document.getElementById("mayank");
+		var pos = parseInt(elem.style.left);
+		var fix = parseInt(elem.style.left) - this.moveby;
+		var id = setInterval(frame, 5);
+		function frame() {
+			if(pos == fix){
+				clearInterval(id);
+			}
+			else{
+				pos--;
+				elem.style.left = (pos - 1) + 'px';
+			}
+		}
+	}
+};
+
+</script>
+</body>
+</html>
+

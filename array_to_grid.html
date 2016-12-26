@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script><style>
+canvas {
+    background-color: #c0c0c0;
+}
+</style>
+<body>
+
+<canvas id="c" width="400" height="400" />
+
+<script>
+
+// block size`
+
+function maze(tobefill)
+{
+	var size = 40;
+
+	// get some info about the canvas
+	var canvas = document.getElementById('c');
+	var ctx = canvas.getContext('2d');
+
+	// how many cells fit on the canvas
+	var w = ~~ (canvas.width / size);
+	var h = ~~ (canvas.height / size);
+
+	// create empty state array
+	var state = new Array(h);
+	for (var y = 0; y < h; ++y) {
+		state[y] = new Array(w);
+	}
+
+	state[1][1]=1;
+	state[3][5]=1;
+
+
+
+	function fill(s, gx, gy) {
+		ctx.fillStyle = s;
+		ctx.fillRect(gx * size, gy * size, size, size);
+	}
+	function make()
+	{
+		for(var i=0;i<h;i++)
+		{
+			for(var j=0;j<w;j++)
+			{
+				if (state[i][j]) 
+					fill(tobefill, i, j);
+			}
+		}
+	}
+	
+	make();
+}
+maze("black");
+
+</script>
+
+</body>
+</html>
+
